@@ -209,7 +209,7 @@ function setLicenseMessage(message, ok=false){
 
 // Kode di database menggunakan huruf besar-kecil tertentu (contoh: CerahCinta).
 // Karena backend menghitung SHA-256 dari nilai yang tersimpan, jangan ubah case di sini.
-function normalizeLicenseCode(code){return (code||"").trim().replace(/\s+/g,"");}
+function normalizeLicenseCode(code){return (code||"").trim().toUpperCase().replace(/\s+/g,"");}
 
 function getDeviceId(){
   let id=localStorage.getItem("AAS_DEVICE_ID_V1");
