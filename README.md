@@ -1,155 +1,55 @@
-# Affiliate AI Studio
+# Affiliate AI Studio — Muzammil
 
-**Affiliate AI Studio** adalah aplikasi web statis untuk membantu
-membuat materi TikTok affiliate dari informasi produk dan referensi yang
-diberikan pengguna.
-
-**Dibuat oleh Muzammil**
+Aplikasi web berbasis satu file HTML untuk membantu membuat materi promosi produk affiliate: narasi, prompt video, **prompt gambar utama**, dan **empat prompt gambar per scene** yang saling berkaitan.
 
 ## Fitur
 
--   Upload beberapa foto referensi:
-    -   Foto produk
-    -   Foto deskripsi/informasi produk
-    -   Foto model yang memakai atau memegang produk
--   Input nama produk dan deskripsi produk.
--   Banyak pilihan gaya konten dan gaya intonasi.
--   Pilihan karakter pembicara, target audiens, CTA, dan durasi.
--   Menghasilkan:
-    -   Analisis produk
-    -   5 hook
-    -   Narasi TikTok sekitar 10 detik
-    -   Master prompt video 10 detik
-    -   4 scene/beat detail
-    -   Arahan visual
-    -   Negative prompt
-    -   Catatan akurasi produk
--   Untuk intonasi cepat/energik, narasi dibuat sedikit lebih panjang
-    agar tetap terasa natural ketika dibaca cepat.
--   Master prompt video menyesuaikan pilihan gaya, intonasi, audiens,
-    CTA, referensi, gerakan model, ekspresi, gestur, product handling,
-    kamera, lighting, transisi, continuity, dan timeline 0--10 detik.
--   Tombol salin untuk hasil narasi dan prompt.
--   Jika Gemini sedang padat atau request terkena rate limit, aplikasi
-    dapat melakukan retry dan menyediakan mode cadangan lokal agar
-    pengguna tetap mendapatkan draft narasi dan prompt.
+- Input informasi/deskripsi dan foto produk.
+- Penyusunan narasi affiliate serta prompt video promosi.
+- Satu prompt gambar utama sebagai referensi visual/frame pembuka.
+- Empat prompt gambar terpisah untuk adegan video (scene 1–4).
+- Tombol salin prompt agar mudah digunakan di layanan AI gambar/video lainnya.
+- Opsi menggunakan Gemini API Key dari pengguna, serta mekanisme cadangan lokal jika tersedia pada fitur terkait.
+- Tidak memerlukan unggahan foto model yang memegang produk.
 
-## Yang tidak termasuk
-
-Fitur **Generate Foto** dan **Generate Video langsung** sengaja tidak
-digunakan dalam versi ini.
-
-Aplikasi berfungsi sebagai **generator narasi dan prompt video**. Prompt
-video dapat disalin ke generator video AI lain.
+> Aplikasi ini membuat **teks prompt**, bukan merender gambar atau video secara langsung.
 
 ## Cara menjalankan
 
-Aplikasi tidak membutuhkan Node.js, npm, database, atau build process.
+1. Buka `index.html` di Chrome, Edge, atau browser modern lainnya.
+2. Isi informasi produk dan unggah foto produk sesuai kebutuhan.
+3. Jika ingin memakai fitur Gemini, masukkan Gemini API Key pada kolom yang tersedia.
+4. Pilih pengaturan konten, kemudian klik **Buat Narasi Sekarang**.
+5. Salin prompt gambar utama, prompt gambar scene 1–4, dan prompt video untuk digunakan di platform generatif pilihan Anda.
 
-Cukup buka:
+## Cara upload ke GitHub
 
-``` text
-index.html
-```
+1. Buat repository baru di GitHub (contoh: `affiliate-ai-studio`).
+2. Upload **`index.html`** dan **`README.md`** ke bagian utama/root repository.
+3. Klik **Commit changes**.
+4. Jika ingin aplikasi bisa dibuka sebagai website, buka **Settings → Pages**.
+5. Pada **Build and deployment**, pilih **Deploy from a branch**, branch **main**, folder **/(root)**, lalu simpan.
+6. Tunggu proses deploy. Situs biasanya tersedia di `https://USERNAME.github.io/NAMA-REPOSITORY/` (ganti sesuai akun dan repository).
 
-## Publikasi melalui GitHub Pages
+## Keamanan API Key
 
-1.  Buat repository baru di GitHub.
-2.  Upload `index.html` dan `README.md`.
-3.  Buka **Settings → Pages**.
-4.  Pada bagian source, pilih branch utama, misalnya `main`, dan folder
-    `/ (root)`.
-5.  Simpan pengaturan.
-6.  Tunggu GitHub Pages melakukan deployment.
-7.  Buka URL GitHub Pages yang diberikan GitHub.
-
-## Gemini API Key
-
-Aplikasi dapat menggunakan Gemini API dari browser.
-
-Masukkan API key pada kolom **Gemini API Key**, kemudian tekan **BUAT
-NARASI SEKARANG**.
-
-### Keamanan
-
-Versi ini adalah aplikasi client-side. API key yang dimasukkan ke
-browser **bukan tempat yang aman untuk menyimpan secret produksi**.
-
-Untuk penggunaan pribadi/prototipe, pendekatan ini dapat digunakan
-dengan memahami risikonya. Untuk aplikasi publik/komersial, sebaiknya
-pemanggilan Gemini dipindahkan ke backend/server yang aman agar API key
-tidak terekspos kepada pengunjung.
-
-## Ketika Gemini sedang padat
-
-Aplikasi memiliki mekanisme retry untuk kondisi sementara seperti rate
-limit atau server sedang sibuk.
-
-Jika semua percobaan model gagal, aplikasi dapat menggunakan **Mode
-Cadangan Lokal** untuk tetap membuat draft berdasarkan data yang
-dimasukkan pengguna.
-
-Mode cadangan lokal tidak dapat melihat isi foto sedalam model
-multimodal. Karena itu, **nama produk dan deskripsi produk sebaiknya
-diisi dengan jelas**.
-
-## Format narasi
-
-Target utama adalah **10 detik**.
-
-Untuk intonasi cepat/energik, narasi dibuat sedikit lebih panjang agar
-cocok dengan delivery cepat. Untuk intonasi santai, narasi dibuat lebih
-ringkas agar tersedia ruang untuk jeda dan artikulasi.
-
-## Format master prompt video
-
-Master prompt dibuat dalam **satu paragraf** agar mudah disalin ke
-generator video.
-
-Prompt mengarahkan video untuk:
-
-1.  Hook
-2.  Product reveal
-3.  Demonstration/benefit yang didukung informasi produk
-4.  CTA
-
-Timeline diarahkan tepat **0--10 detik** dan setiap adegan harus menyatu
-secara visual.
-
-Prompt juga mempertimbangkan:
-
--   Gerakan model
--   Ekspresi wajah
--   Gestur tangan
--   Cara memegang/memperlihatkan produk
--   Posisi produk
--   Framing
--   Camera movement
--   Lens/look
--   Lighting
--   Focus
--   Transition
--   Continuity
--   Tempo berdasarkan intonasi
--   Voice-over Bahasa Indonesia
--   CTA
+- **Jangan menuliskan API Key langsung ke kode HTML atau README, dan jangan mengunggah kunci rahasia ke GitHub.**
+- Masukkan API Key secara manual saat menggunakan aplikasi. Opsi **Ingat API Key di perangkat ini** menyimpan kunci pada penyimpanan browser perangkat tersebut; hindari opsi ini pada komputer bersama.
+- Karena ini aplikasi HTML sisi klien, permintaan Gemini dilakukan dari browser pengguna. Untuk aplikasi publik dengan API Key milik pengelola, sebaiknya gunakan backend/proxy yang menyimpan kunci secara aman, bukan menaruhnya dalam JavaScript publik.
+- Perhatikan kuota, biaya, dan kebijakan layanan Gemini.
 
 ## Struktur repository
 
-``` text
-Affiliate-AI-Studio/
+```text
+affiliate-ai-studio/
 ├── index.html
 └── README.md
 ```
 
-## Lisensi
-
-Belum menetapkan lisensi open-source khusus. Jika repository akan dibuka
-untuk publik, tambahkan file `LICENSE` sesuai lisensi yang ingin
-digunakan.
-
 ## Catatan
 
-Gunakan klaim produk yang jujur dan sesuai informasi penjual. Jangan
-membuat klaim manfaat, harga, spesifikasi, atau hasil penggunaan yang
-tidak didukung oleh informasi produk.
+Versi ini dapat dijalankan sebagai file HTML lokal maupun di-host sebagai situs statis melalui GitHub Pages. Ketersediaan fitur Gemini bergantung pada API Key, koneksi internet, akses model, dan kebijakan layanan.
+
+---
+
+Dikembangkan untuk **Affiliate AI Studio · Muzammil**.
